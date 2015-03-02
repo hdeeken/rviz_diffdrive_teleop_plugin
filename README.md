@@ -1,11 +1,8 @@
-rviz_fps_plugin
+rviz_diffdrive_teleop_plugin
 ===============
 
-The rviz_fps_plugin package contains an additional ViewController and a Tool Plugin to navigate RViz like an FPS-Shooter.
-
-To enable the tool press 'q' and enable the 'FPSMotion' ViewController. Use the 'wasd' keys for walking.
-By pressing 'f' one can switch between walk or fly mode. By pressing 'r' you can reset the view controller.
+The rviz_diffdrive_teleop_plugin package contains a Tool Plugin to steer a differential wheeled robot using the keyboard.
 
 Third-Party Copyright:
-"Robot" icon by Jean-Philippe Cabaroc
-http://thenounproject.com/term/robot/22552/
+"Drive" icon by by Jane Terekhov
+http://thenounproject.com/term/drive/54406/
