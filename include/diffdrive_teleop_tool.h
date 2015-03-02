@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef RVIZ_TELEOP_TOOL_H
-#define RVIZ_TELEOP_TOOL_H
+#ifndef RVIZ_DIFFDRIVE_TELEOP_TOOL_H
+#define RVIZ_DIFFDRIVE_TELEOP_TOOL_H
 
 #include <map>
 #include <vector>
@@ -59,7 +59,7 @@
 #include <geometry_msgs/Twist.h>
 
 /**
- *@class TeleopTool
+ *@class DiffDriveTeleopTool
  *
  *@brief Implements a rviz tool that allows to navigate a wheeled robot using the keyboard.
  */
@@ -67,13 +67,13 @@
 namespace rviz
 {
 
-class TeleopTool: public rviz::Tool
+class DiffDriveTeleopTool: public rviz::Tool
 {
 Q_OBJECT
 
 public:
-  TeleopTool();
-  ~TeleopTool();
+  DiffDriveTeleopTool();
+  ~DiffDriveTeleopTool();
 
   virtual void onInitialize();
   virtual void activate();

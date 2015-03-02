@@ -1,11 +1,11 @@
 <package>
-  <name>rviz_teleop_plugin</name>
+  <name>rviz_diffdrive_teleop_plugin</name>
   <version>0.1.0</version>
   <description>
   ...
   </description>
   <license>BSD</license>
-  <url>http://ros.org/wiki/rviz_teleop_plugin</url>
+  <url>http://ros.org/wiki/rviz_diffdrive_teleop_plugin</url>
   <author>hdeeken</author>
   <maintainer email="hdeeken@uni-osnabrueck.de">Henning Deeken</maintainer>
   <buildtool_depend>catkin</buildtool_depend>

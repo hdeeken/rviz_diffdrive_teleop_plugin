@@ -26,12 +26,12 @@
  *
  */
 
-#include <teleop_tool.h>
+#include <diffdrive_teleop_tool.h>
 
 namespace rviz
 {
 
-TeleopTool::TeleopTool()
+DiffDriveTeleopTool::DiffDriveTeleopTool()
 {
   shortcut_key_ = 't';
   access_all_keys_ = true;
@@ -39,9 +39,9 @@ TeleopTool::TeleopTool()
   command_publisher_ =  node_.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 }
 
-TeleopTool::~TeleopTool() {}
+DiffDriveTeleopTool::~DiffDriveTeleopTool() {}
 
-void TeleopTool::onInitialize()
+void DiffDriveTeleopTool::onInitialize()
 {
   setName( "Drive" );
 
@@ -61,7 +61,6 @@ void TeleopTool::onInitialize()
                                                             "Gives the boost factor which is applied if pressing shift.",
                                                             getPropertyContainer(), SLOT( setYawBoost() ), this );
 
-
   left_hand_property_ = new BoolProperty( "Left Hand Mode", false,
                                                             "In left hand mode one uses the arrows to move around, instead of wasd.",
                                                             getPropertyContainer(), SLOT( setLeftHandMode() ), this );
@@ -75,16 +74,12 @@ void TeleopTool::onInitialize()
   move_tool_.initialize( context_ );
 }
 
-void TeleopTool::activate(){ }
+void DiffDriveTeleopTool::activate(){ }
 
-void TeleopTool::deactivate(){ }
+void DiffDriveTeleopTool::deactivate(){ }
 
-
-
-int TeleopTool::processKeyEvent(QKeyEvent *event, rviz::RenderPanel* panel)
+int DiffDriveTeleopTool::processKeyEvent(QKeyEvent *event, rviz::RenderPanel* panel)
 {
-
-  ROS_INFO("Key: %s / %d", event->text().toStdString().c_str(), event->key());
   geometry_msgs::Twist command;
   
   double walk_update = walk_speed_;
@@ -99,29 +94,22 @@ int TeleopTool::processKeyEvent(QKeyEvent *event, rviz::RenderPanel* panel)
   // move forward / backward
   if ((event->key() == Qt::Key_W && !left_hand_mode_) || (event->key() == Qt::Key_Up && left_hand_mode_))
   {
-    ROS_INFO("Move Forward");
     command.linear.x = walk_update;
   }
- if ((event->key() == Qt::Key_S))
- {
-   ROS_INFO("Move Backwardzzz");
- }
-  if ((event->key() == Qt::Key_S && !left_hand_mode_))  //|| (event->key() == Qt::Key_Down && left_hand_mode_))
+
+  if ((event->key() == Qt::Key_S && !left_hand_mode_) || (event->key() == Qt::Key_Down && left_hand_mode_))
   {
-    ROS_INFO("Move Backward");
-    //command.linear.x = -walk_update;
+    command.linear.x = -walk_update;
   }
 
   // turn left / right
   if ((event->key() == Qt::Key_A && !left_hand_mode_) || (event->key() == Qt::Key_Left && left_hand_mode_))
   {
-    ROS_INFO("Turn Left");
     command.angular.z = yaw_update;
   }
 
   if ((event->key() == Qt::Key_D && !left_hand_mode_) || (event->key() == Qt::Key_Right && left_hand_mode_))
   {
-    ROS_INFO("Turn Right");
     command.angular.z = -yaw_update;
   }
 
@@ -130,13 +118,12 @@ int TeleopTool::processKeyEvent(QKeyEvent *event, rviz::RenderPanel* panel)
   return Render;
 }
 
-int TeleopTool::processMouseEvent( ViewportMouseEvent& event )
+int DiffDriveTeleopTool::processMouseEvent( ViewportMouseEvent& event )
 {
   return move_tool_.processMouseEvent( event );
 }
 
-
 } // end namespace rviz
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(rviz::TeleopTool, rviz::Tool)
+PLUGINLIB_EXPORT_CLASS(rviz::DiffDriveTeleopTool, rviz::Tool)
