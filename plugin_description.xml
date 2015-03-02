@@ -1,0 +1,7 @@
+<library path="lib/librviz_teleop_plugin">
+  <class name="rviz/TeleopTool" type="rviz::TeleopTool" base_class_type="rviz::Tool">
+    <description>
+      ...
+    </description>
+  </class>
+</library>
